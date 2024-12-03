@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjettespill</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Gjettespill</h1>
+    <p>Gjet et tall mellom 1 og 100:</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="makeGuess()">Gjet!</button>
+    <div id="result"></div>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 100) + 1;
+        let guessCount = 0;
+        let gameStatus = 'spiller';
+
+        function makeGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            guessCount++;
+
+            if (userGuess < targetNumber) {
+                document.getElementById('result').innerText = 'For lavt! Prøv igjen.';
+            } else if (userGuess > targetNumber) {
+                document.getElementById('result').innerText = 'For høyt! Prøv igjen.';
+            } else {
+                document.getElementById('result').innerText = `Riktig! Du gjettet tallet ${targetNumber} på ${guessCount} forsøk.`;
+                gameStatus = 'vunnet';
+            }
+        }
+    </script>
+</body>
+</html>
